@@ -27,6 +27,7 @@ def build_data():
         lon = float(record[2])
         name = record[3]
         stations[id] = Station(id, name, (lat, lon))
+        
 
     r = csv.reader(open(os.path.join(rootdir, 'underground_routes.csv')))
     next(r)  # jump the first line
@@ -35,6 +36,7 @@ def build_data():
         id2 = int(id2)
         stations[id1].links.append(stations[id2])
         stations[id2].links.append(stations[id1])
+    # print(stations)
     return stations
 
 STATIONS = build_data()
